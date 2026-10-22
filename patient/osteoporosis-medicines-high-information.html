@@ -233,6 +233,7 @@ footer a{color:var(--sage-200)}
         <option value="font-c">Lora + Source Sans 3</option>
         <option value="font-d">Manrope</option>
       </select>
+      <button class="btn ghost" type="button" id="refreshBtn" title="Reload the latest version of this page">&#x21bb; Refresh</button>
       <button class="btn ghost" type="button" id="resetBtn">Clear my details</button>
       <button class="btn" type="button" id="printBtn">Print / Save as PDF</button>
     </div>
@@ -1160,6 +1161,10 @@ footer a{color:var(--sage-200)}
   }
   tabs.forEach(function(t){ t.addEventListener("click", function(){ setLang(t.getAttribute("data-lang")); }); });
   try{ var sl = localStorage.getItem(STORE+"_lang"); if(sl) setLang(sl); }catch(e){}
+
+  // Hard refresh: bypass cached copy
+  function hardRefresh(){try{if(window.caches&&caches.keys){caches.keys().then(function(k){k.forEach(function(n){caches.delete(n);});});}}catch(e){}var u=new URL(location.href);u.searchParams.set("v",Date.now());location.replace(u.toString());}
+  $("refreshBtn").addEventListener("click", hardRefresh);
 
   // Print
   $("printBtn").addEventListener("click", function(){

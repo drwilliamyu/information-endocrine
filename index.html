@@ -21,11 +21,13 @@ a.card:hover{border-color:var(--sage-600)}
 .tag{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--sage-100);color:var(--sage-700);margin-bottom:8px}
 .card h3{margin:0 0 4px;color:var(--sage-900)}
 .muted{color:var(--muted);font-size:.92rem}
+.refresh{position:absolute;top:14px;right:16px;font:inherit;font-size:.85rem;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;cursor:pointer}
+header{position:relative}
 footer{padding:32px 16px;color:var(--muted);font-size:.85rem}
 </style>
 </head>
 <body>
-<header><div class="wrap">
+<header><button class="refresh" type="button" onclick="hardRefresh()" title="Reload the latest version of this page">&#x21bb; Refresh</button><div class="wrap">
   <h1>Information Endocrine</h1>
   <p>Endocrine and bone health information sheets for patients and health professionals in Australia.</p>
 </div></header>
@@ -42,5 +44,6 @@ footer{padding:32px 16px;color:var(--muted);font-size:.85rem}
   <p class="muted">Coming soon.</p>
 </main>
 <footer class="wrap">General information only. It does not replace advice from your doctor. Last edited 22 October 2026.</footer>
+<script>function hardRefresh(){try{if(window.caches&&caches.keys){caches.keys().then(function(k){k.forEach(function(n){caches.delete(n);});});}}catch(e){}var u=new URL(location.href);u.searchParams.set("v",Date.now());location.replace(u.toString());}</script>
 </body>
 </html>

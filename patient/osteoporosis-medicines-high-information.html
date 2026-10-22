@@ -6,7 +6,7 @@
 <title>Bone Therapy Guide — High Information</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:wght@500;600&family=Source+Sans+3:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:wght@500;600&family=Source+Sans+3:wght@400;600&family=Manrope:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --sage-950:#1f2a22; --sage-900:#2f3e33; --sage-800:#3c5041; --sage-700:#4a6350;
@@ -132,6 +132,29 @@ ul.tight{margin:.2em 0 0;padding-left:1.1em} ul.tight li{margin-bottom:.35em}
 .ev-table tbody th{width:18%}
 .pct-line{margin-top:6px;font-size:.88rem;color:var(--ink)}
 
+/* language tabs */
+.lang-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.lang-tabs button{font:inherit;font-size:.88rem;padding:7px 14px;border-radius:999px;border:1px solid var(--sage-500);background:transparent;color:var(--sage-700);cursor:pointer}
+.lang-tabs button[aria-selected="true"]{background:var(--sage-700);color:#fff;border-color:var(--sage-700)}
+.lang-panel[hidden]{display:none}
+:lang(zh-Hans){font-family:"Noto Sans SC",var(--f-body)}
+:lang(zh-Hans) h2,:lang(zh-Hans) h3,:lang(zh-Hans) h4{font-family:"Noto Sans SC",var(--f-head)}
+.lang-note{margin-top:14px}
+/* summary */
+.summary{background:var(--paper)}
+.def-table,.class-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+.def-table td,.class-table td,.class-table th{padding:7px 9px;border-bottom:1px solid var(--sage-100);vertical-align:top}
+.class-table thead th{background:var(--sage-100);color:var(--sage-900);position:static;font-size:.8rem}
+.def-table td:first-child,.class-table td:first-child{font-weight:600;width:38%}
+.def-table tr.row-red td{background:var(--red-bg)}
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.hl{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:14px 16px}
+.hl.hl-stop{background:var(--red-bg);border-color:var(--red)}
+.hl.hl-wide{grid-column:1/-1;background:var(--sage-100);border-color:var(--sage-600)}
+.hl p,.hl li{font-size:.92rem}
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--sage-100);font-size:.93rem;cursor:pointer}
+.checklist label:last-child{border-bottom:0}
+.checklist input{margin-top:5px;accent-color:var(--sage-700);width:16px;height:16px;flex:none}
 /* builder */
 #builder{background:var(--sage-100)}
 .builder-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px;align-items:start}
@@ -169,7 +192,7 @@ footer a{color:var(--sage-200)}
 @page{size:A4;margin:14mm 13mm 16mm}
 @media print{
   body{background:#fff;font-size:10pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .toolbar,.no-print{display:none!important}
+  .toolbar,.no-print,.lang-tabs{display:none!important}
   .print-only{display:block}
   .wrap{max-width:none;padding:0}
   header.hero{padding:16px 18px;border-radius:10px;margin-bottom:6px}
@@ -179,6 +202,8 @@ footer a{color:var(--sage-200)}
   h2{font-size:15pt} h3{font-size:11.5pt}
   .card,.table-scroll,fieldset,.result-card{break-inside:avoid;page-break-inside:avoid}
   .drug-block{break-inside:avoid}
+  .hl,.checklist .card,.cat-card{break-inside:avoid}
+  .summary{background:#fff}
   .mech-fig{break-inside:avoid}
   .table-scroll{overflow:visible}
   .cost-table td{white-space:normal}
@@ -230,34 +255,340 @@ footer a{color:var(--sage-200)}
 
 <main>
 
-<!-- OVERVIEW -->
-<section>
+<!-- SUMMARY (ASD-STE100 style) -->
+<section id="summary" class="summary">
   <div class="wrap">
-    <div class="section-label">The big picture</div>
-    <h2>Two strategies: protect bone, or build bone</h2>
+    <div class="section-label">Summary</div>
+    <h2>The short version</h2>
+    <div class="lang-tabs no-print-tabs" role="tablist" aria-label="Summary language">
+      <button type="button" role="tab" data-lang="en" aria-selected="true">English</button>
+      <button type="button" role="tab" data-lang="vi" aria-selected="false" lang="vi">Tiếng Việt</button>
+      <button type="button" role="tab" data-lang="zh" aria-selected="false" lang="zh-Hans">中文（简体）</button>
+    </div>
+    <div class="lang-panel" lang="en" data-lang="en">
+    <p class="muted">Read this part first. The sections after it give the full detail.</p>
+
     <div class="grid2">
       <div class="card">
-        <span class="tag">Category 1 · Antiresorptive</span>
-        <h3>Slow down bone removal</h3>
-        <p>Bone is constantly removed and rebuilt. These medicines slow the cells that remove bone (osteoclasts). Bone density rises modestly and fracture risk falls.</p>
-        <ul>
-          <li>Bisphosphonates (tablets or yearly infusion)</li>
-          <li>Denosumab (injection every 6 months)</li>
-        </ul>
+        <span class="tag">1 · The condition</span>
+        <h3>Osteoporosis and osteopenia</h3>
+        <p><strong>Osteoporosis</strong> is a condition of thin, weak bones. Weak bones break more easily. A small fall can cause a fracture.</p>
+        <p><strong>Osteopenia</strong> is bone density that is lower than normal. It is not as low as osteoporosis.</p>
+        <table class="def-table">
+          <tbody>
+            <tr><td>Normal</td><td>T-score −1.0 or higher</td></tr>
+            <tr><td>Osteopenia</td><td>T-score between −1.0 and −2.5</td></tr>
+            <tr class="row-red"><td>Osteoporosis</td><td>T-score −2.5 or lower, <em>or</em> a fracture from a small fall at any T-score</td></tr>
+          </tbody>
+        </table>
       </div>
       <div class="card">
-        <span class="tag">Category 2 · Anabolic</span>
-        <h3>Build new bone</h3>
-        <p>These medicines stimulate the cells that form bone (osteoblasts). Density rises faster and further. They are time-limited and reserved for very high fracture risk.</p>
-        <ul>
-          <li>Teriparatide and abaloparatide (daily injection)</li>
-          <li>Romosozumab (monthly injection for 12 months)</li>
+        <span class="tag">2 · The measurement</span>
+        <h3>Bone density is the main measure, not the full picture</h3>
+        <p>A DXA scan measures bone mineral density (BMD). BMD is the main measurement that doctors use today.</p>
+        <p>BMD shows only part of your fracture risk. Other factors also change the risk:</p>
+        <ul class="tight">
+          <li>your age</li>
+          <li>fractures in the past</li>
+          <li>falls</li>
+          <li>some medicines and medical conditions</li>
+          <li>bone quality, which a scan cannot fully measure</li>
         </ul>
+        <p class="mini">Tools such as FRAX and the Garvan calculator combine these factors.</p>
       </div>
     </div>
-    <div class="callout sage">
-      <strong>Order matters.</strong> For very high fracture risk, starting with an anabolic and then switching to an antiresorptive gives the largest gain. Every anabolic course must be followed by an antiresorptive. Without it, most of the new bone is lost within 1–2 years.
+
+    <h3 style="margin-top:26px">3 · The two types of medicine</h3>
+    <div class="grid2">
+      <div class="card cat-card">
+        <span class="tag">Antiresorptive</span>
+        <h3>Slow down bone loss</h3>
+        <p>These medicines slow the cells that remove bone.</p>
+        <table class="class-table">
+          <thead><tr><th>Class</th><th>Main example <span class="brand-names">(<i>trade name</i>)</span></th></tr></thead>
+          <tbody>
+            <tr><td>Bisphosphonates</td><td>Alendronate (<i>Fosamax</i>)<br><span class="mini">Also risedronate (<i>Actonel</i>) and zoledronic acid (<i>Aclasta</i>)</span></td></tr>
+            <tr><td>RANKL inhibitors</td><td>Denosumab (<i>Prolia</i>)<br><span class="mini">Biosimilars: <i>Jubbonti</i>, <i>Stoboclo</i>, <i>Ospomyv</i></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card cat-card">
+        <span class="tag">Anabolic</span>
+        <h3>Build new bone</h3>
+        <p>These medicines make the cells that form bone more active. Doctors use them for very high fracture risk.</p>
+        <table class="class-table">
+          <thead><tr><th>Class</th><th>Main example <span class="brand-names">(<i>trade name</i>)</span></th></tr></thead>
+          <tbody>
+            <tr><td>PTH-receptor agonists</td><td>Teriparatide (<i>Forteo</i>)<br><span class="mini">Also abaloparatide (<i>Eladynos</i>)</span></td></tr>
+            <tr><td>Sclerostin inhibitors</td><td>Romosozumab (<i>Evenity</i>)</td></tr>
+          </tbody>
+        </table>
+        <p class="mini">After an anabolic course, you must start an antiresorptive. If you do not, you lose most of the new bone.</p>
+      </div>
     </div>
+
+    <h3 style="margin-top:26px">4 · Side effects to know about</h3>
+    <div class="hl-grid">
+      <div class="hl">
+        <h4>Bisphosphonates</h4>
+        <ul class="tight">
+          <li><strong>Tablets:</strong> heartburn. Take with a full glass of water and stay upright for 30 minutes.</li>
+          <li><strong>Infusion:</strong> flu-like symptoms for 1–3 days after the first dose (about 1 in 3 people).</li>
+        </ul>
+      </div>
+      <div class="hl hl-stop">
+        <h4>Denosumab</h4>
+        <ul class="tight">
+          <li><strong>Do not stop or delay a dose.</strong> If you stop without a plan, spine fractures can occur.</li>
+          <li>Low calcium can occur, mainly with kidney disease.</li>
+        </ul>
+      </div>
+      <div class="hl">
+        <h4>Teriparatide and abaloparatide</h4>
+        <ul class="tight">
+          <li>Dizziness when you stand up. Inject sitting or lying down.</li>
+          <li>Nausea, and a fast heartbeat with abaloparatide.</li>
+        </ul>
+      </div>
+      <div class="hl hl-stop">
+        <h4>Romosozumab</h4>
+        <ul class="tight">
+          <li>A small increase in heart attack and stroke.</li>
+          <li><strong>Not for you</strong> if you had a heart attack or stroke in the past.</li>
+        </ul>
+      </div>
+      <div class="hl hl-wide">
+        <h4>Rare risks for all antiresorptives and romosozumab</h4>
+        <p><strong>Jaw bone problem (ONJ)</strong> and <strong>unusual thigh-bone fracture (AFF)</strong>. Both are rare. Tell your doctor about jaw pain, a dental problem that does not heal, or new thigh or groin pain.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:26px">5 · What your doctor needs from you</h3>
+    <p>Bring this information to your appointment. Tick each item when you have it.</p>
+    <div class="grid2 checklist">
+      <div class="card">
+        <h4>Results and history</h4>
+        <label><input type="checkbox"> DXA scan report: T-scores, Z-scores and BMD, with the date</label>
+        <label><input type="checkbox"> All fractures: which bone, when, and how it happened</label>
+        <label><input type="checkbox"> Height loss or back pain (this can mean a spine fracture)</label>
+        <label><input type="checkbox"> Falls in the last 12 months</label>
+        <label><input type="checkbox"> A parent with a hip fracture</label>
+        <label><input type="checkbox"> Recent blood tests: vitamin D, calcium and kidney function (eGFR)</label>
+      </div>
+      <div class="card">
+        <h4>Medicines and health</h4>
+        <label><input type="checkbox"> Bone medicines in the past: name, start date, stop date, missed doses</label>
+        <label><input type="checkbox"> Steroid tablets (for example prednisolone) for 3 months or more</label>
+        <label><input type="checkbox"> Hormone treatment for breast or prostate cancer</label>
+        <label><input type="checkbox"> Kidney disease, heart attack or stroke</label>
+        <label><input type="checkbox"> Reflux or swallowing problems</label>
+        <label><input type="checkbox"> Dental health and planned dental work</label>
+        <label><input type="checkbox"> Age at menopause (women) or low testosterone (men)</label>
+        <label><input type="checkbox"> Smoking and alcohol use</label>
+      </div>
+    </div>
+    </div>
+    <div class="lang-panel" lang="vi" data-lang="vi" hidden>
+    <p class="muted">Hãy đọc phần này trước. Các phần sau có thông tin đầy đủ (bằng tiếng Anh).</p>
+    <div class="grid2">
+      <div class="card">
+        <span class="tag">1 · Bệnh</span>
+        <h3>Loãng xương và thiếu xương</h3>
+        <p><strong>Loãng xương</strong> là tình trạng xương mỏng và yếu. Xương yếu dễ gãy hơn. Một cú ngã nhẹ có thể làm gãy xương.</p>
+        <p><strong>Thiếu xương</strong> là khi mật độ xương thấp hơn bình thường. Mức này chưa thấp bằng loãng xương.</p>
+        <table class="def-table"><tbody>
+          <tr><td>Bình thường</td><td>Chỉ số T từ −1,0 trở lên</td></tr>
+          <tr><td>Thiếu xương</td><td>Chỉ số T từ −1,0 đến −2,5</td></tr>
+          <tr class="row-red"><td>Loãng xương</td><td>Chỉ số T từ −2,5 trở xuống, <em>hoặc</em> gãy xương do ngã nhẹ ở bất kỳ chỉ số T nào</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card">
+        <span class="tag">2 · Cách đo</span>
+        <h3>Mật độ xương là thước đo chính, nhưng chưa đủ</h3>
+        <p>Máy chụp DXA đo mật độ khoáng xương (BMD). Hiện nay, BMD là thước đo chính mà bác sĩ dùng.</p>
+        <p>BMD chỉ cho biết một phần nguy cơ gãy xương. Các yếu tố khác cũng làm thay đổi nguy cơ:</p>
+        <ul class="tight">
+          <li>tuổi của bạn</li>
+          <li>đã từng gãy xương</li>
+          <li>té ngã</li>
+          <li>một số thuốc và bệnh lý</li>
+          <li>chất lượng xương, mà máy chụp không đo được đầy đủ</li>
+        </ul>
+        <p class="mini">Các công cụ như FRAX và Garvan kết hợp các yếu tố này.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:26px">3 · Hai loại thuốc</h3>
+    <div class="grid2">
+      <div class="card cat-card">
+        <span class="tag">Chống hủy xương</span>
+        <h3>Làm chậm mất xương</h3>
+        <p>Các thuốc này làm chậm tế bào hủy xương.</p>
+        <table class="class-table">
+          <thead><tr><th>Nhóm thuốc</th><th>Thuốc tiêu biểu <span class="brand-names">(<i>tên thương mại</i>)</span></th></tr></thead>
+          <tbody>
+            <tr><td>Bisphosphonate</td><td>Alendronate (<i>Fosamax</i>)<br><span class="mini">Ngoài ra: risedronate (<i>Actonel</i>) và axit zoledronic (<i>Aclasta</i>)</span></td></tr>
+            <tr><td>Thuốc ức chế RANKL</td><td>Denosumab (<i>Prolia</i>)<br><span class="mini">Thuốc tương tự sinh học: <i>Jubbonti</i>, <i>Stoboclo</i>, <i>Ospomyv</i></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card cat-card">
+        <span class="tag">Tạo xương</span>
+        <h3>Tạo xương mới</h3>
+        <p>Các thuốc này làm tế bào tạo xương hoạt động mạnh hơn. Bác sĩ dùng chúng khi nguy cơ gãy xương rất cao.</p>
+        <table class="class-table">
+          <thead><tr><th>Nhóm thuốc</th><th>Thuốc tiêu biểu <span class="brand-names">(<i>tên thương mại</i>)</span></th></tr></thead>
+          <tbody>
+            <tr><td>Chủ vận thụ thể PTH</td><td>Teriparatide (<i>Forteo</i>)<br><span class="mini">Ngoài ra: abaloparatide (<i>Eladynos</i>)</span></td></tr>
+            <tr><td>Ức chế sclerostin</td><td>Romosozumab (<i>Evenity</i>)</td></tr>
+          </tbody>
+        </table>
+        <p class="mini">Sau khi dùng thuốc tạo xương, bạn phải dùng tiếp thuốc chống hủy xương. Nếu không, bạn sẽ mất phần lớn xương mới.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:26px">4 · Tác dụng phụ cần biết</h3>
+    <div class="hl-grid">
+      <div class="hl"><h4>Bisphosphonate</h4><ul class="tight">
+        <li><strong>Thuốc viên:</strong> ợ nóng. Uống với một ly nước đầy và ngồi hoặc đứng thẳng trong 30 phút.</li>
+        <li><strong>Truyền tĩnh mạch:</strong> triệu chứng giống cúm trong 1–3 ngày sau liều đầu (khoảng 1 trong 3 người).</li></ul></div>
+      <div class="hl hl-stop"><h4>Denosumab</h4><ul class="tight">
+        <li><strong>Không được ngừng hoặc trễ liều.</strong> Nếu ngừng mà không có kế hoạch, có thể gãy xương cột sống.</li>
+        <li>Canxi máu có thể thấp, chủ yếu ở người bệnh thận.</li></ul></div>
+      <div class="hl"><h4>Teriparatide và abaloparatide</h4><ul class="tight">
+        <li>Chóng mặt khi đứng dậy. Hãy tiêm khi ngồi hoặc nằm.</li>
+        <li>Buồn nôn; tim đập nhanh với abaloparatide.</li></ul></div>
+      <div class="hl hl-stop"><h4>Romosozumab</h4><ul class="tight">
+        <li>Tăng nhẹ nguy cơ nhồi máu cơ tim và đột quỵ.</li>
+        <li><strong>Không dùng</strong> nếu bạn đã từng bị nhồi máu cơ tim hoặc đột quỵ.</li></ul></div>
+      <div class="hl hl-wide"><h4>Nguy cơ hiếm gặp với mọi thuốc chống hủy xương và romosozumab</h4>
+        <p><strong>Hoại tử xương hàm (ONJ)</strong> và <strong>gãy xương đùi không điển hình (AFF)</strong>. Cả hai đều hiếm. Hãy báo bác sĩ nếu đau hàm, vết thương răng miệng không lành, hoặc đau mới ở đùi hay háng.</p></div>
+    </div>
+
+    <h3 style="margin-top:26px">5 · Bác sĩ cần thông tin gì từ bạn</h3>
+    <p>Hãy mang các thông tin này đến buổi khám. Đánh dấu từng mục khi bạn đã có.</p>
+    <div class="grid2 checklist">
+      <div class="card"><h4>Kết quả và tiền sử</h4>
+        <label><input type="checkbox"> Kết quả chụp DXA: chỉ số T, chỉ số Z và BMD, có ghi ngày</label>
+        <label><input type="checkbox"> Mọi lần gãy xương: xương nào, khi nào, và do đâu</label>
+        <label><input type="checkbox"> Giảm chiều cao hoặc đau lưng (có thể là gãy xương cột sống)</label>
+        <label><input type="checkbox"> Té ngã trong 12 tháng qua</label>
+        <label><input type="checkbox"> Cha hoặc mẹ từng gãy xương hông</label>
+        <label><input type="checkbox"> Xét nghiệm máu gần đây: vitamin D, canxi và chức năng thận (eGFR)</label>
+      </div>
+      <div class="card"><h4>Thuốc và sức khỏe</h4>
+        <label><input type="checkbox"> Thuốc trị xương đã dùng: tên thuốc, ngày bắt đầu, ngày ngừng, các liều bị quên</label>
+        <label><input type="checkbox"> Thuốc steroid dạng viên (ví dụ prednisolone) từ 3 tháng trở lên</label>
+        <label><input type="checkbox"> Điều trị nội tiết cho ung thư vú hoặc ung thư tuyến tiền liệt</label>
+        <label><input type="checkbox"> Bệnh thận, nhồi máu cơ tim hoặc đột quỵ</label>
+        <label><input type="checkbox"> Trào ngược dạ dày hoặc khó nuốt</label>
+        <label><input type="checkbox"> Tình trạng răng miệng và việc chữa răng sắp tới</label>
+        <label><input type="checkbox"> Tuổi mãn kinh (nữ) hoặc testosterone thấp (nam)</label>
+        <label><input type="checkbox"> Hút thuốc và uống rượu</label>
+      </div>
+    </div>
+    </div>
+    <div class="lang-panel" lang="zh-Hans" data-lang="zh" hidden>
+    <p class="muted">请先阅读本部分。后面的章节提供完整信息（英文）。</p>
+    <div class="grid2">
+      <div class="card">
+        <span class="tag">1 · 疾病</span>
+        <h3>骨质疏松症和骨量减少</h3>
+        <p><strong>骨质疏松症</strong>是指骨骼变薄、变弱。弱的骨骼更容易骨折。轻微跌倒就可能导致骨折。</p>
+        <p><strong>骨量减少</strong>是指骨密度低于正常，但还没有低到骨质疏松症的程度。</p>
+        <table class="def-table"><tbody>
+          <tr><td>正常</td><td>T值 −1.0 或更高</td></tr>
+          <tr><td>骨量减少</td><td>T值在 −1.0 至 −2.5 之间</td></tr>
+          <tr class="row-red"><td>骨质疏松症</td><td>T值 −2.5 或更低，<em>或</em>在任何T值下因轻微跌倒而骨折</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card">
+        <span class="tag">2 · 测量方法</span>
+        <h3>骨密度是主要指标，但不是全部</h3>
+        <p>DXA扫描测量骨矿物质密度（BMD）。BMD是目前医生使用的主要指标。</p>
+        <p>BMD只反映部分骨折风险。以下因素也会影响风险：</p>
+        <ul class="tight">
+          <li>年龄</li>
+          <li>以前的骨折</li>
+          <li>跌倒</li>
+          <li>某些药物和疾病</li>
+          <li>骨骼质量（扫描无法完全测量）</li>
+        </ul>
+        <p class="mini">FRAX和Garvan等工具会综合这些因素。</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:26px">3 · 两类药物</h3>
+    <div class="grid2">
+      <div class="card cat-card">
+        <span class="tag">抗骨吸收药物</span>
+        <h3>减缓骨量流失</h3>
+        <p>这类药物减缓清除骨骼的细胞。</p>
+        <table class="class-table">
+          <thead><tr><th>药物类别</th><th>代表药物 <span class="brand-names">（<i>商品名</i>）</span></th></tr></thead>
+          <tbody>
+            <tr><td>双膦酸盐类</td><td>阿仑膦酸钠 alendronate（<i>Fosamax</i>）<br><span class="mini">另有：利塞膦酸钠 risedronate（<i>Actonel</i>）和唑来膦酸 zoledronic acid（<i>Aclasta</i>）</span></td></tr>
+            <tr><td>RANKL抑制剂</td><td>地舒单抗 denosumab（<i>Prolia</i>）<br><span class="mini">生物类似药：<i>Jubbonti</i>、<i>Stoboclo</i>、<i>Ospomyv</i></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card cat-card">
+        <span class="tag">促骨形成药物</span>
+        <h3>生成新骨</h3>
+        <p>这类药物使形成骨骼的细胞更加活跃。医生在骨折风险非常高时使用。</p>
+        <table class="class-table">
+          <thead><tr><th>药物类别</th><th>代表药物 <span class="brand-names">（<i>商品名</i>）</span></th></tr></thead>
+          <tbody>
+            <tr><td>甲状旁腺激素（PTH）受体激动剂</td><td>特立帕肽 teriparatide（<i>Forteo</i>）<br><span class="mini">另有：阿巴洛肽 abaloparatide（<i>Eladynos</i>）</span></td></tr>
+            <tr><td>骨硬化蛋白抑制剂</td><td>罗莫佐单抗 romosozumab（<i>Evenity</i>）</td></tr>
+          </tbody>
+        </table>
+        <p class="mini">促骨形成药物疗程结束后，必须接着使用抗骨吸收药物。否则，大部分新骨会流失。</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:26px">4 · 需要了解的副作用</h3>
+    <div class="hl-grid">
+      <div class="hl"><h4>双膦酸盐类</h4><ul class="tight">
+        <li><strong>片剂：</strong>烧心。用一满杯水送服，服药后保持直立30分钟。</li>
+        <li><strong>静脉输注：</strong>首次用药后1–3天可能出现类似流感的症状（约每3人中有1人）。</li></ul></div>
+      <div class="hl hl-stop"><h4>地舒单抗</h4><ul class="tight">
+        <li><strong>不要停药或推迟用药。</strong>如果没有计划就停药，可能发生脊椎骨折。</li>
+        <li>可能出现低血钙，主要见于肾病患者。</li></ul></div>
+      <div class="hl"><h4>特立帕肽和阿巴洛肽</h4><ul class="tight">
+        <li>站起时头晕。请在坐着或躺着时注射。</li>
+        <li>恶心；阿巴洛肽可引起心跳加快。</li></ul></div>
+      <div class="hl hl-stop"><h4>罗莫佐单抗</h4><ul class="tight">
+        <li>心脏病发作和中风的风险略有增加。</li>
+        <li>如果您曾经发生过心脏病发作或中风，<strong>不适合使用</strong>。</li></ul></div>
+      <div class="hl hl-wide"><h4>所有抗骨吸收药物和罗莫佐单抗的罕见风险</h4>
+        <p><strong>颌骨坏死（ONJ）</strong>和<strong>非典型股骨骨折（AFF）</strong>。两者都很罕见。如果出现下颌疼痛、口腔伤口不愈合，或大腿、腹股沟出现新的疼痛，请告诉医生。</p></div>
+    </div>
+
+    <h3 style="margin-top:26px">5 · 医生需要您提供的信息</h3>
+    <p>就诊时请带上以下信息。准备好后在每一项打勾。</p>
+    <div class="grid2 checklist">
+      <div class="card"><h4>检查结果和病史</h4>
+        <label><input type="checkbox"> DXA扫描报告：T值、Z值和BMD，以及检查日期</label>
+        <label><input type="checkbox"> 所有骨折：哪块骨头、何时、如何发生</label>
+        <label><input type="checkbox"> 身高变矮或背痛（可能是脊椎骨折）</label>
+        <label><input type="checkbox"> 过去12个月内的跌倒</label>
+        <label><input type="checkbox"> 父亲或母亲曾发生髋部骨折</label>
+        <label><input type="checkbox"> 近期血液检查：维生素D、血钙和肾功能（eGFR）</label>
+      </div>
+      <div class="card"><h4>用药和健康状况</h4>
+        <label><input type="checkbox"> 以前用过的骨质疏松药物：名称、开始日期、停药日期、漏用的剂量</label>
+        <label><input type="checkbox"> 口服类固醇（例如泼尼松龙 prednisolone）3个月或以上</label>
+        <label><input type="checkbox"> 乳腺癌或前列腺癌的激素治疗</label>
+        <label><input type="checkbox"> 肾病、心脏病发作或中风</label>
+        <label><input type="checkbox"> 胃食管反流或吞咽困难</label>
+        <label><input type="checkbox"> 牙齿健康状况和计划中的牙科治疗</label>
+        <label><input type="checkbox"> 绝经年龄（女性）或睾酮偏低（男性）</label>
+        <label><input type="checkbox"> 吸烟和饮酒情况</label>
+      </div>
+    </div>
+    </div>
+    <p class="mini lang-note">The Vietnamese and Chinese summaries are machine-assisted translations. A certified medical translator has not yet checked them. If anything is unclear, ask for an interpreter. Your doctor can book one through TIS National (131 450).</p>
   </div>
 </section>
 
@@ -818,6 +1149,17 @@ footer a{color:var(--sage-200)}
     try{ localStorage.setItem(STORE+"_font2", fontSel.value); }catch(e){}
   });
   try{ var f = localStorage.getItem(STORE+"_font2"); if(f!==null){ fontSel.value=f; applyFont(f); } }catch(e){}
+
+  // Summary language tabs
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".lang-tabs button"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".lang-panel"));
+  function setLang(l){
+    tabs.forEach(function(t){ t.setAttribute("aria-selected", t.getAttribute("data-lang")===l ? "true" : "false"); });
+    panels.forEach(function(p){ p.hidden = p.getAttribute("data-lang")!==l; });
+    try{ localStorage.setItem(STORE+"_lang", l); }catch(e){}
+  }
+  tabs.forEach(function(t){ t.addEventListener("click", function(){ setLang(t.getAttribute("data-lang")); }); });
+  try{ var sl = localStorage.getItem(STORE+"_lang"); if(sl) setLang(sl); }catch(e){}
 
   // Print
   $("printBtn").addEventListener("click", function(){
